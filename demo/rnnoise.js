@@ -4,13 +4,13 @@ navigator.mediaDevices.getUserMedia({ audio: true }).then(async (hello) => {
     console.log(hello)
     const context = new AudioContext({ sampleRate: 48000 });
     try {
-        // const destination = new MediaStreamAudioDestinationNode(context, {
-        //     channelCountMode: "explicit",
-        //     channelCount: 1,
-        //     channelInterpretation: "speakers",
-        // });
+        const destination = new MediaStreamAudioDestinationNode(context, {
+            channelCountMode: "explicit",
+            channelCount: 1,
+            channelInterpretation: "speakers",
+        });
 
-        const destination = context.destination
+//         const destination = context.destination
 
         const [stream] = await Promise.all([
             navigator.mediaDevices.getUserMedia({
@@ -36,9 +36,9 @@ navigator.mediaDevices.getUserMedia({ audio: true }).then(async (hello) => {
         rnnoise.connect(destination);
         source.connect(rnnoise);
 
-        // const audio = new Audio();
-        // audio.srcObject = destination.stream;
-        // audio.play();
+        const audio = new Audio();
+        audio.srcObject = destination.stream;
+        audio.play();
         
     } catch (e) {
         context.close();
