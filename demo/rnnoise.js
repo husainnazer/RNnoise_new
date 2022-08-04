@@ -40,6 +40,8 @@ navigator.mediaDevices.getUserMedia({ audio: true }).then(async (hello) => {
         audio.srcObject = destination.stream;
         audio.play();
         
+        console.log("<<<<<< change reflected >>>>>>")
+        
     } catch (e) {
         context.close();
         console.error(e);
